@@ -77,6 +77,17 @@ cf push my_app -s (cflinuxfs2|lucid64)
 
 To run docker on Mac OS X, we recommend [boot2docker](http://boot2docker.io/).
 
+## Testing
+Buildpacks use the [Machete](https://github.com/cloudfoundry/machete) framework for running integration tests.
+
+To test a buildpack, run the following command from the buildpack's directory:
+
+```
+BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
+```
+
+More options can be found on Machete's [Github page.](https://github.com/cloudfoundry/machete)
+
 ## Contributing
 
 Find our guidelines [here](./CONTRIBUTING.md).
