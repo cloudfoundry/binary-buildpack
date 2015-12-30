@@ -92,6 +92,10 @@ More options can be found on Machete's [Github page.](https://github.com/cloudfo
 
 Find our guidelines [here](./CONTRIBUTING.md).
 
+## Help and Support
+
+Join the #buildpacks channel in our [Slack community] (http://slack.cloudfoundry.org/) 
+
 ## Reporting Issues
 
 To report an issue with the buildpack, open an issue on this GitHub repo.
