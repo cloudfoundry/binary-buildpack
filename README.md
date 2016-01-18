@@ -1,4 +1,5 @@
-# Cloud Foundry buildpack: Binary Files
+# Cloud Foundry Binary Buildpack
+[![CF Slack](https://s3.amazonaws.com/buildpacks-assets/buildpacks-slack.svg)](http://slack.cloudfoundry.org)
 
 A Cloud Foundry [buildpack](http://docs.cloudfoundry.org/buildpacks/) for running arbitrary binary web servers.
 
@@ -91,6 +92,10 @@ More options can be found on Machete's [Github page.](https://github.com/cloudfo
 ## Contributing
 
 Find our guidelines [here](./CONTRIBUTING.md).
+
+## Help and Support
+
+Join the #buildpacks channel in our [Slack community] (http://slack.cloudfoundry.org/) 
 
 ## Reporting Issues
 
