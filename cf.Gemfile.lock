@@ -7,14 +7,14 @@ GIT
       httparty
 
 GIT
-  remote: https://github.com/cloudfoundry-incubator/buildpack-packager
-  revision: 501f8de837ce3ee1b5f005cc24d6469cde05eedf
-  tag: v2.1.2
+  remote: https://github.com/cloudfoundry/buildpack-packager
+  revision: 77ef3ffd08f902c084da4653e5373fc26ee816ea
+  tag: v2.2.7
   specs:
-    buildpack-packager (0.0.1)
+    buildpack-packager (2.2.7)
       activesupport (~> 4.1.8)
       kwalify
-      rspec
+      terminal-table (~> 1.4.5)
 
 GEM
   remote: https://rubygems.org/
@@ -56,6 +56,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     slop (3.6.0)
+    terminal-table (1.4.5)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
