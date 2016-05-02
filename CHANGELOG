@@ -1,3 +1,13 @@
+v1.0.2 May 02, 2016
+====================
+
+* Move documentation about deploying applications to cloudfoundry.org docs
+  (https://www.pivotaltracker.com/story/show/#118094267)
+
+* Add github issue and pull request templates
+  (https://www.pivotaltracker.com/story/show/115892743)
+  (https://www.pivotaltracker.com/story/show/113122277)
+
 v1.0.1 Jun 19, 2015
 ====================
 
