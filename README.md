@@ -3,11 +3,11 @@
 
 A Cloud Foundry [buildpack](http://docs.cloudfoundry.org/buildpacks/) for running arbitrary binary web servers.
 
-## Using the Buildpack
+### Buildpack User Documentation
 
-For information on deploying binaries visit [CloudFoundry.org](http://docs.cloudfoundry.org/buildpacks/binary/index.html).
+Official buildpack documentation can be found at http://docs.cloudfoundry.org/buildpacks/binary/index.html.
 
-# Building the Buildpack
+### Building the Buildpack
 
 1. Get latest buildpack dependencies
 
@@ -30,7 +30,7 @@ For information on deploying binaries visit [CloudFoundry.org](http://docs.cloud
     cf push my_app -b custom_binary_buildpack
     ```
 
-## Testing
+### Testing
 Buildpacks use the [Machete](https://github.com/cloudfoundry/machete) framework for running integration tests.
 
 To test a buildpack, run the following command from the buildpack's directory:
@@ -41,29 +41,18 @@ BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
 
 More options can be found on Machete's [Github page.](https://github.com/cloudfoundry/machete)
 
-## Testing
-Buildpacks use the [Machete](https://github.com/cloudfoundry/machete) framework for running integration tests.
-
-To test a buildpack, run the following command from the buildpack's directory:
-
-```
-BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
-```
-
-More options can be found on Machete's [Github page.](https://github.com/cloudfoundry/machete)
-
-## Contributing
+### Contributing
 
 Find our guidelines [here](./CONTRIBUTING.md).
 
-## Help and Support
+### Help and Support
 
 Join the #buildpacks channel in our [Slack community] (http://slack.cloudfoundry.org/) if you need any further assistance.
 
-## Reporting Issues
+### Reporting Issues
 
 Open a GitHub issue on this project [here](https://github.com/cloudfoundry/binary-buildpack/issues/new)
 
-## Active Development
+### Active Development
 
 The project backlog is on [Pivotal Tracker](https://www.pivotaltracker.com/projects/1042066)
