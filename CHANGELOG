@@ -1,3 +1,9 @@
+v1.0.3 Jul 18, 2016
+====================
+
+* Update buildpack-packager to 2.2.9
+  (https://www.pivotaltracker.com/story/show/125874681)
+
 v1.0.2 May 02, 2016
 ====================
 
