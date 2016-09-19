@@ -1,3 +1,13 @@
+v1.0.4 Sep 19, 2016
+====================
+
+* Update machete to 0.0.49
+
+* Update buildpack-packager to 2.3.3
+
+* Update ruby from 2.2.3 -> 2.3.1
+  (https://www.pivotaltracker.com/story/show/126143393)
+
 v1.0.3 Jul 18, 2016
 ====================
 
