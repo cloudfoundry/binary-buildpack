@@ -1,2 +1,9 @@
 #! /bin/sh
+BUILD_DIR=$1
+CACHE_DIR=$2
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+
+$BP_DIR/compile-extensions/bin/check_buildpack_version $BP_DIR $CACHE_DIR
+$BP_DIR/compile-extensions/bin/store_buildpack_metadata $BP_DIR $CACHE_DIR
+
 exit 0
