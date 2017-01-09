@@ -1,3 +1,9 @@
+v1.0.6 Jan 09, 2017
+====================
+
+* Add new version warning to binary buildpack
+  (https://www.pivotaltracker.com/story/show/135234395)
+
 v1.0.5 Oct 19, 2016
 ====================
 
