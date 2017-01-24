@@ -1,0 +1,3 @@
+---
+health-check-type: none
+command: ./loop.bat Hello, world!
