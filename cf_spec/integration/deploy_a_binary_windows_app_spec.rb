@@ -12,6 +12,8 @@ describe 'CF Binary Buildpack' do
       let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2') }
 
       it 'deploys successfully' do
+        skip_if_no_windows_stack
+
         expect(app).to be_running
 
         expect(app).to have_logged("Hello, world!")
@@ -22,6 +24,8 @@ describe 'CF Binary Buildpack' do
       let(:app) { Machete.deploy_app(app_name, stack: 'windows2012R2') }
 
       it 'fails to stage' do
+        skip_if_no_windows_stack
+
         expect(app).not_to be_running
 
         if diego_enabled?(app_name)
@@ -35,5 +39,15 @@ describe 'CF Binary Buildpack' do
 
   def diego_enabled?(app_name)
     `cf has-diego-enabled #{app_name}`.chomp == 'true'
+  end
+
+  def skip_if_no_windows_stack
+    return if has_windows_stack?
+
+    skip 'cf installation does not have a Windows stack'
+  end
+
+  def has_windows_stack?
+    `cf stacks`.include? 'windows2012R2'
   end
 end
