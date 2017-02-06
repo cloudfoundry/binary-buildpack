@@ -1,3 +1,9 @@
+v1.0.8 Feb 06, 2017
+====================
+
+* Add Windows support to the binary buildpack
+  (https://www.pivotaltracker.com/story/show/138289425)
+
 v1.0.7 Jan 10, 2017
 ====================
 
