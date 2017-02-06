@@ -11,7 +11,8 @@ describe 'CF Binary Buildpack' do
     let(:app_name) { 'webrick_app' }
 
     context 'when specifying a buildpack' do
-      let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack') }
+      let(:buildpack) { ENV.fetch('SHARED_HOST')=='true' ? 'binary_buildpack' : 'binary-test-buildpack' }
+      let(:app) { Machete.deploy_app(app_name, buildpack: buildpack) }
 
       it 'deploys successfully' do
         expect(app).to be_running
@@ -23,7 +24,7 @@ describe 'CF Binary Buildpack' do
     end
 
     context 'without specifying a buildpack' do
-      let(:app) { Machete.deploy_app(app_name) }
+      let(:app) { Machete.deploy_app(app_name, skip_verify_version: true) }
 
       it 'fails to stage' do
         expect(app).not_to be_running

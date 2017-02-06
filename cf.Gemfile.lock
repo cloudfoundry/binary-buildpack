@@ -33,7 +33,7 @@ GEM
     ffi (1.9.17)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
-    i18n (0.7.0)
+    i18n (0.8.0)
     json (1.8.6)
     kwalify (0.7.2)
     method_source (0.8.2)
