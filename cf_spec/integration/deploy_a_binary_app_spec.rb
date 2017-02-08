@@ -36,8 +36,4 @@ describe 'CF Binary Buildpack' do
       end
     end
   end
-
-  def diego_enabled?(app_name)
-    `cf has-diego-enabled #{app_name}`.chomp == 'true'
-  end
 end

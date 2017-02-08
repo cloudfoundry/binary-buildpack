@@ -46,18 +46,4 @@ describe 'CF Binary Buildpack' do
       end
     end
   end
-
-  def diego_enabled?(app_name)
-    `cf has-diego-enabled #{app_name}`.chomp == 'true'
-  end
-
-  def skip_if_no_windows_stack
-    return if has_windows_stack?
-
-    skip 'cf installation does not have a Windows stack'
-  end
-
-  def has_windows_stack?
-    `cf stacks`.include? 'windows2012R2'
-  end
 end
