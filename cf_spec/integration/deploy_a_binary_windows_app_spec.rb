@@ -35,6 +35,16 @@ describe 'CF Binary Buildpack' do
         end
       end
     end
+
+    context 'without a command or Procfile' do
+      let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2', start_command: 'null') }
+
+      it 'logs an error message' do
+        skip_if_no_windows_stack
+
+        expect(app).to have_logged("Error: no start command specified during staging or launch")
+      end
+    end
   end
 
   def diego_enabled?(app_name)
