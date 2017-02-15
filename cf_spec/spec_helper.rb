@@ -12,7 +12,7 @@ def skip_if_no_windows_stack
 end
 
 def has_windows_stack?
-  `cf stacks`.include? 'windows2012R2'
+  Machete::CF::Stacks.new.execute.include? 'windows2012R2'
 end
 
 def diego_enabled?(app_name)
