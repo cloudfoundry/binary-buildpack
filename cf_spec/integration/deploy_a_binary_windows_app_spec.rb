@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'CF Binary Buildpack' do
+  before(:all) { skip_if_no_windows_stack }
   after do
     Machete::CF::DeleteApp.new.execute(app)
   end
@@ -12,8 +13,6 @@ describe 'CF Binary Buildpack' do
       let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2') }
 
       it 'deploys successfully' do
-        skip_if_no_windows_stack
-
         expect(app).to be_running
 
         expect(app).to have_logged("Hello, world!")
@@ -24,8 +23,6 @@ describe 'CF Binary Buildpack' do
       let(:app) { Machete.deploy_app(app_name, stack: 'windows2012R2') }
 
       it 'fails to stage' do
-        skip_if_no_windows_stack
-
         expect(app).not_to be_running
 
         if diego_enabled?(app_name)
@@ -40,8 +37,6 @@ describe 'CF Binary Buildpack' do
       let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2', start_command: 'null') }
 
       it 'logs an error message' do
-        skip_if_no_windows_stack
-
         expect(app).to have_logged("Error: no start command specified during staging or launch")
       end
     end
