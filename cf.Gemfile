@@ -6,4 +6,4 @@ gem 'rspec'
 gem 'rspec-instafail'
 gem 'pry'
 
-ruby '2.3.1'
+ruby '~> 2.3'
