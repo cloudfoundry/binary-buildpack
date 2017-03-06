@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe 'CF Binary Buildpack' do
   before(:all) { skip_if_no_windows_stack }
+  let(:buildpack) { ENV.fetch('SHARED_HOST')=='true' ? 'binary_buildpack' : 'binary-test-buildpack' }
+
   after do
     Machete::CF::DeleteApp.new.execute(app)
   end
@@ -10,7 +12,7 @@ describe 'CF Binary Buildpack' do
     let(:app_name) { 'windows_app' }
 
     context 'when specifying a buildpack' do
-      let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2') }
+      let(:app) { Machete.deploy_app(app_name, buildpack: buildpack, stack: 'windows2012R2') }
 
       it 'deploys successfully' do
         expect(app).to be_running
@@ -34,7 +36,7 @@ describe 'CF Binary Buildpack' do
     end
 
     context 'without a command or Procfile' do
-      let(:app) { Machete.deploy_app(app_name, buildpack: 'binary-test-buildpack', stack: 'windows2012R2', start_command: 'null') }
+      let(:app) { Machete.deploy_app(app_name, buildpack: buildpack, stack: 'windows2012R2', start_command: 'null') }
 
       it 'logs an error message' do
         expect(app).to have_logged("Error: no start command specified during staging or launch")
