@@ -22,7 +22,7 @@ describe 'CF Binary Buildpack' do
     end
 
     context 'without specifying a buildpack' do
-      let(:app) { Machete.deploy_app(app_name, stack: 'windows2012R2') }
+      let(:app) { Machete.deploy_app(app_name, stack: 'windows2012R2', skip_verify_version: true) }
 
       it 'fails to stage' do
         expect(app).not_to be_running

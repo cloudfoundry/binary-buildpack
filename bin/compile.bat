@@ -1,2 +1,2 @@
 @echo off
-exit /b 0
+powershell.exe %~dp0\compile.ps1 %1 %2 %3
