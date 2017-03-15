@@ -1,3 +1,9 @@
+v1.0.10 Mar 15, 2017
+=====================
+
+* Run release.ps1 with Unrestricted execution policy
+  (https://www.pivotaltracker.com/story/show/141795139)
+
 v1.0.9 Feb 09, 2017
 ====================
 
