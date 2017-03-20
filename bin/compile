@@ -1,12 +1,21 @@
 #! /bin/bash
 BUILD_DIR=$1
 CACHE_DIR=$2
+DEPS_DIR=${4:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
-
 export BUILDPACK_PATH=$BP_DIR
-source $BP_DIR/compile-extensions/lib/common
 
+source $BP_DIR/compile-extensions/lib/common
 $BP_DIR/compile-extensions/bin/check_buildpack_version $BP_DIR $CACHE_DIR
+
+if [ -n "$DEPS_DIR" ]; then
+  env_vars=$($BP_DIR/compile-extensions/bin/build_path_from_supply $DEPS_DIR)
+  for env_var in $env_vars; do
+    export $env_var
+  done
+  $BP_DIR/compile-extensions/bin/write_profiled_from_supply $DEPS_DIR $BUILD_DIR
+fi
+
 $BP_DIR/compile-extensions/bin/store_buildpack_metadata $BP_DIR $CACHE_DIR
 
 exit 0
