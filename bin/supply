@@ -1,0 +1,17 @@
+#! /bin/bash
+set -euo pipefail
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+DEPS_DIR=$3
+DEPS_IDX=$4
+
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+export BUILDPACK_PATH=$BP_DIR
+
+source $BP_DIR/compile-extensions/lib/common
+$BP_DIR/compile-extensions/bin/check_buildpack_version $BP_DIR $CACHE_DIR
+
+$BP_DIR/compile-extensions/bin/write_config_yml $BP_DIR "$DEPS_DIR/$DEPS_IDX"
+
+exit 0

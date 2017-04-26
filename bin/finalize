@@ -1,0 +1,17 @@
+#! /bin/bash
+
+set -eu
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+DEPS_DIR=$3
+DEPS_IDX=$4
+
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+export BUILDPACK_PATH=$BP_DIR
+
+$BP_DIR/compile-extensions/bin/write_profiled_from_supply $DEPS_DIR $BUILD_DIR
+
+$BP_DIR/compile-extensions/bin/store_buildpack_metadata $BP_DIR $CACHE_DIR
+
+exit 0
