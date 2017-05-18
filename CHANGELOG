@@ -1,3 +1,9 @@
+v1.0.13 May 18, 2017
+=====================
+
+* Use '_' instead of '-' in .profile.d script names
+  (https://www.pivotaltracker.com/story/show/144964891)
+
 v1.0.12 May 08, 2017
 =====================
 
