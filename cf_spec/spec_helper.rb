@@ -12,6 +12,7 @@ def skip_if_no_windows_stack
 end
 
 def has_windows_stack?
+  return false if ENV['SKIP_WINDOWS_TESTS']
   Machete::CF::Stacks.new.execute.include? 'windows2012R2'
 end
 
