@@ -10,19 +10,25 @@ Official buildpack documentation can be found at [binary buildpack docs](http://
 
 ### Building the Buildpack
 
-1. Get latest buildpack dependencies
+1. Make sure you have fetched submodules
+   ```shell   
+   
+   git submodule update --init
+   ```
+
+2. Get latest buildpack dependencies
 
   ```shell
   BUNDLE_GEMFILE=cf.Gemfile bundle
   ```
 
-1. Build the buildpack
+3. Build the buildpack
 
   ```shell
   BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager [ --uncached | --cached ]
   ```
 
-1. Use in Cloud Foundry
+4. Use in Cloud Foundry
 
     Upload the buildpack to your Cloud Foundry and optionally specify it by name
 
