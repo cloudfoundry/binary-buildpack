@@ -15,7 +15,3 @@ def has_windows_stack?
   return false if ENV['SKIP_WINDOWS_TESTS']
   Machete::CF::Stacks.new.execute.include? 'windows2012R2'
 end
-
-def diego_enabled?(app_name)
-  `cf has-diego-enabled #{app_name}`.chomp == 'true'
-end

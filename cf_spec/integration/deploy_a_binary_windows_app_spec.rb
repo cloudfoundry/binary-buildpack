@@ -27,11 +27,7 @@ describe 'CF Binary Buildpack' do
       it 'fails to stage' do
         expect(app).not_to be_running
 
-        if diego_enabled?(app_name)
-          expect(app).to have_logged('None of the buildpacks detected a compatible application')
-        else
-          expect(app).to have_logged('An app was not successfully detected by any available buildpack')
-        end
+        expect(app).to have_logged('None of the buildpacks detected a compatible application')
       end
     end
 
