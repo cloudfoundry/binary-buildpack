@@ -30,7 +30,6 @@ describe 'CF Binary Buildpack' do
         expect(app).not_to be_running
 
         expect(app).to have_logged('None of the buildpacks detected a compatible application')
-        end
       end
     end
   end
