@@ -1,3 +1,11 @@
+v1.0.15 Oct 10, 2017
+=====================
+
+* Improve README
+
+* Fix error while runing the integration test suite on newer cloudfoundry clusters
+  (https://www.pivotaltracker.com/story/show/151215179)
+
 v1.0.14 Jul 31, 2017
 =====================
 
