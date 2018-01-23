@@ -18,6 +18,7 @@
   name = "github.com/cloudfoundry/libbuildpack"
   packages = [
     ".",
+    "bratshelper",
     "cutlass",
     "packager"
   ]
@@ -75,8 +76,8 @@
 [[projects]]
   name = "github.com/tidwall/gjson"
   packages = ["."]
-  revision = "e62d62a3e1e9f324346170bbc04333341f803dfb"
-  version = "v1.0.5"
+  revision = "87033efcaec6215741137e8ca61952c53ef2685d"
+  version = "v1.0.6"
 
 [[projects]]
   branch = "master"
@@ -133,6 +134,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b0127b2273f5b769151dd9af267775714a5bb48909ccc2f3bf4bd15ddf032a11"
+  inputs-digest = "9426f8c8fbe2f6574ecfcdff34937f28f5b30c73eb7d0968f964a426a727f845"
   solver-name = "gps-cdcl"
   solver-version = 1
