@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 set -euo pipefail
 
 BUILD_DIR=$1
@@ -6,12 +6,11 @@ CACHE_DIR=$2
 DEPS_DIR=$3
 DEPS_IDX=$4
 
-BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
-export BUILDPACK_PATH=$BP_DIR
+export BUILDPACK_DIR=`dirname $(readlink -f ${BASH_SOURCE%/*})`
+source "$BUILDPACK_DIR/scripts/install_go.sh"
+output_dir=$(mktemp -d -t supplyXXX)
 
-source $BP_DIR/compile-extensions/lib/common
-$BP_DIR/compile-extensions/bin/check_buildpack_version $BP_DIR $CACHE_DIR
+echo "-----> Running go build supply"
+GOROOT=$GoInstallDir/go GOPATH=$BUILDPACK_DIR $GoInstallDir/go/bin/go build -o $output_dir/supply binary/supply/cli
 
-$BP_DIR/compile-extensions/bin/write_config_yml $BP_DIR "$DEPS_DIR/$DEPS_IDX"
-
-exit 0
+$output_dir/supply "$BUILD_DIR" "$CACHE_DIR" "$DEPS_DIR" "$DEPS_IDX"

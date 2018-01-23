@@ -1,2 +1,4 @@
+/.bin/
 /binary_buildpack*.zip
-/log
+/log/
+/pkg/

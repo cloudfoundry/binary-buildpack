@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'webrick'
+
+server = WEBrick::HTTPServer.new :Port => ENV['PORT']
+
+server.mount_proc '/' do |request, response|
+  if request.path == '/'
+    response.body = 'Hello World!'
+  else
+    response.status = 404
+    response.body = 'Not Found'
+  end
+end
+
+trap 'INT' do server.shutdown end
+
+server.start

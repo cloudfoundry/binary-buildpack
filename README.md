@@ -10,43 +10,60 @@ Official buildpack documentation can be found at [binary buildpack docs](http://
 
 ### Building the Buildpack
 
-1. Make sure you have fetched submodules
-   ```shell   
-   
-   git submodule update --init
+To build this buildpack, run the following command from the buildpack's directory:
+
+1. Source the .envrc file in the buildpack directory.
+
+   ```bash
+   source .envrc
    ```
+   To simplify the process in the future, install [direnv](https://direnv.net/) which will automatically source .envrc when you change directories.
 
-2. Get latest buildpack dependencies
-
-  ```shell
-  BUNDLE_GEMFILE=cf.Gemfile bundle
-  ```
-
-3. Build the buildpack
-
-  ```shell
-  BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-packager [ --uncached | --cached ]
-  ```
-
-4. Use in Cloud Foundry
-
-    Upload the buildpack to your Cloud Foundry and optionally specify it by name
+1. Install buildpack-packager
 
     ```bash
-    cf create-buildpack custom_binary_buildpack binary_buildpack-cached-custom.zip 1
-    cf push my_app -b custom_binary_buildpack
+    (cd src/binary/vendor/github.com/cloudfoundry/libbuildpack/packager/buildpack-packager && go install)
+    ```
+
+1. Build the buildpack
+
+    ```bash
+    buildpack-packager [ --cached=(true|false) ]
+    ```
+
+1. Use in Cloud Foundry
+
+   Upload the buildpack to your Cloud Foundry and optionally specify it by name
+
+    ```bash
+    cf create-buildpack [BUILDPACK_NAME] [BUILDPACK_ZIP_FILE_PATH] 1
+    cf push my_app [-b BUILDPACK_NAME]
     ```
 
 ### Testing
-Buildpacks use the [Machete](https://github.com/cloudfoundry/machete) framework for running integration tests.
 
-To test a buildpack, run the following command from the buildpack's directory:
+Buildpacks use the [Cutlass](https://github.com/cloudfoundry/libbuildpack/tree/master/cutlass) framework for running integration tests.
 
-```
-BUNDLE_GEMFILE=cf.Gemfile bundle exec buildpack-build
-```
+To test this buildpack, run the following command from the buildpack's directory:
 
-More options can be found on Machete's [Github page](https://github.com/cloudfoundry/machete).
+1. Source the .envrc file in the buildpack directory.
+
+   ```bash
+   source .envrc
+   ```
+   To simplify the process in the future, install [direnv](https://direnv.net/) which will automatically source .envrc when you change directories.
+
+1. Run unit tests
+
+    ```bash
+    ./scripts/unit.sh
+    ```
+
+1. Run integration tests
+
+    ```bash
+    ./scripts/integration.sh
+    ```
 
 ### Contributing
 
