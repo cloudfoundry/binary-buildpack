@@ -1,3 +1,12 @@
+v1.0.16 Jan 29, 2018
+=====================
+
+* Convert to libbuildpack
+  (https://www.pivotaltracker.com/story/show/154557770)
+
+* Pass profile.d dir through to finalize
+  (https://www.pivotaltracker.com/story/show/151381690)
+
 v1.0.15 Oct 10, 2017
 =====================
 
