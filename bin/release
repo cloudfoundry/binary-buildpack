@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
 
-echo -e "---\ndefault_process_types:\n  web: exit 1"
+
+
+echo -e "---\ndefault_process_types:\n  web: '>&2 echo Error: no start command specified during staging or launch && exit 1'"
