@@ -1,3 +1,16 @@
+v1.0.18 Mar 20, 2018
+=====================
+
+* New buildpack-packager build command
+  (https://www.pivotaltracker.com/story/show/155223266)
+
+* Online buildpacks cache downloaded manifest.yml dependencies
+  (https://www.pivotaltracker.com/story/show/155405429)
+
+* Merge pull request #15 from sneal/no-powershell
+  Remove PowerShell execution from buildpack phases on Windows
+  (https://www.pivotaltracker.com/story/show/153865216)
+
 v1.0.17 Feb 09, 2018
 =====================
 
