@@ -94,6 +94,6 @@ func canRunForOneOfStacks(stacks ...string) bool {
 		if os.Getenv("CF_STACK") == stack {
 			return true
 		}
-		return false
 	}
+	return false
 }
