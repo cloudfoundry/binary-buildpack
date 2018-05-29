@@ -1,6 +1,7 @@
 package integration_test
 
 import (
+	"os"
 	"path/filepath"
 
 	"github.com/cloudfoundry/libbuildpack/cutlass"
@@ -9,7 +10,7 @@ import (
 )
 
 var _ = Describe("CF Binary Buildpack", func() {
-	BeforeEach(SkipIfNoWindowsStack)
+	BeforeEach(SkipIfNotWindows)
 
 	var app *cutlass.App
 	AfterEach(func() {
@@ -22,7 +23,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 	Describe("deploying a Windows batch script", func() {
 		BeforeEach(func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "windows_app"))
-			app.Stack = "windows2012R2"
+			app.Stack = os.Getenv("CF_STACK")
 		})
 
 		Context("when specifying a buildpack", func() {

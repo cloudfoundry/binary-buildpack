@@ -1,6 +1,7 @@
 package integration_test
 
 import (
+	"os"
 	"path/filepath"
 
 	"github.com/cloudfoundry/libbuildpack/cutlass"
@@ -9,9 +10,10 @@ import (
 )
 
 var _ = Describe("CF Binary Buildpack", func() {
-	BeforeEach(SkipIfNoWindowsStack)
+	BeforeEach(SkipIfNotWindows)
 
 	var app *cutlass.App
+
 	AfterEach(func() {
 		if app != nil {
 			app.Destroy()
@@ -24,7 +26,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "hwc_app"))
 			app.Buildpacks = []string{"binary_buildpack"}
 			app.Memory = "512M"
-			app.Stack = "windows2012R2"
+			app.Stack = os.Getenv("CF_STACK")
 		})
 
 		Context("without a command or Procfile", func() {

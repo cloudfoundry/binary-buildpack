@@ -1,6 +1,7 @@
 package integration_test
 
 import (
+	"os"
 	"path/filepath"
 
 	"github.com/cloudfoundry/libbuildpack/cutlass"
@@ -10,6 +11,7 @@ import (
 
 var _ = Describe("CF Binary Buildpack", func() {
 	var app *cutlass.App
+
 	AfterEach(func() {
 		if app != nil {
 			app.Destroy()
@@ -21,16 +23,13 @@ var _ = Describe("CF Binary Buildpack", func() {
 		BeforeEach(func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "no_start_command"))
 			app.Buildpacks = []string{"binary_buildpack"}
+			app.Stack = os.Getenv("CF_STACK")
 			app.StartCommand = "null"
 			app.Memory = "512M"
 		})
 
 		Context("on a windows stack", func() {
-			BeforeEach(func() {
-				SkipIfNoWindowsStack()
-				app.Stack = "windows2012R2"
-				app.StartCommand = "null"
-			})
+			BeforeEach(SkipIfNotWindows)
 
 			It("logs a warning message", func() {
 				Expect(app.Push()).ToNot(Succeed())
@@ -40,10 +39,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 		})
 
 		Context("on a linux stack", func() {
-			BeforeEach(func() {
-				app.Stack = "cflinuxfs2"
-				app.StartCommand = "null"
-			})
+			BeforeEach(SkipIfNotLinux)
 
 			It("logs a warning message", func() {
 				Expect(app.Push()).ToNot(Succeed())

@@ -29,7 +29,7 @@ func init() {
 var _ = SynchronizedBeforeSuite(func() []byte {
 	// Run once
 	if buildpackVersion == "" {
-		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack("")
+		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack(os.Getenv("CF_STACK"))
 		Expect(err).NotTo(HaveOccurred())
 
 		data, err := json.Marshal(packagedBuildpack)
@@ -62,6 +62,7 @@ var _ = SynchronizedAfterSuite(func() {
 }, func() {
 	// Run once
 	Expect(cutlass.RemovePackagedBuildpack(packagedBuildpack)).To(Succeed())
+	Expect(cutlass.DeleteBuildpack("binary")).To(Succeed()) // Delete buildpack, so next set of tests against a different stack can run
 	Expect(cutlass.DeleteOrphanedRoutes()).To(Succeed())
 })
 
@@ -76,22 +77,23 @@ func PushAppAndConfirm(app *cutlass.App) {
 	Expect(app.ConfirmBuildpack(buildpackVersion)).To(Succeed())
 }
 
-func SkipIfNoWindowsStack() {
-	if !HasWindowsStack() {
-		Skip("cf installation does not have a Windows stack")
+func SkipIfNotWindows() {
+	if os.Getenv("SKIP_WINDOWS_TESTS") != "" || !canRunForOneOfStacks("windows2012R2", "windows2016") {
+		Skip("Skipping Windows tests")
 	}
 }
 
-func HasWindowsStack() bool {
-	if os.Getenv("SKIP_WINDOWS_TESTS") != "" {
-		return false
+func SkipIfNotLinux() {
+	if !canRunForOneOfStacks("cflinuxfs2") {
+		Skip("Skipping Linux tests")
 	}
-	stacks, err := cutlass.Stacks()
-	Expect(err).To(BeNil())
+}
+
+func canRunForOneOfStacks(stacks ...string) bool {
 	for _, stack := range stacks {
-		if stack == "windows2012R2" {
+		if os.Getenv("CF_STACK") == stack {
 			return true
 		}
+		return false
 	}
-	return false
 }
