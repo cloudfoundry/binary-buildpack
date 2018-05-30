@@ -23,10 +23,7 @@ func init() {
 
 var _ = SynchronizedBeforeSuite(func() []byte {
 	// Run once
-
-	//return bratshelper.InitBpData(os.Getenv("CF_STACK")).Marshal()
-	return bratshelper.InitBpData("").Marshal()  // TODO: Using "any" stack for now, but need to get the above working
-
+	return bratshelper.InitBpData(os.Getenv("CF_STACK")).Marshal()
 }, func(data []byte) {
 	// Run on all nodes
 	bratshelper.Data.Unmarshal(data)

@@ -29,8 +29,7 @@ func init() {
 var _ = SynchronizedBeforeSuite(func() []byte {
 	// Run once
 	if buildpackVersion == "" {
-		//packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack(os.Getenv("CF_STACK"))
-		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack("") // TODO: Using "any" stack for now, but need to get the above working
+		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack(os.Getenv("CF_STACK"))
 		Expect(err).NotTo(HaveOccurred())
 
 		data, err := json.Marshal(packagedBuildpack)
@@ -63,8 +62,7 @@ var _ = SynchronizedAfterSuite(func() {
 }, func() {
 	// Run once
 	Expect(cutlass.RemovePackagedBuildpack(packagedBuildpack)).To(Succeed())
-	// TODO: Uncomment line below once packaging with specific stack is working
-	//Expect(cutlass.DeleteBuildpack("binary")).To(Succeed()) // Delete buildpack, so next set of tests against a different stack can run
+	Expect(cutlass.DeleteBuildpack("binary")).To(Succeed()) // Delete buildpack, so next set of tests against a different stack can run
 	Expect(cutlass.DeleteOrphanedRoutes()).To(Succeed())
 })
 
