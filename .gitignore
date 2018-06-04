@@ -2,3 +2,4 @@
 /binary_buildpack*.zip
 /log/
 /pkg/
+.idea/
