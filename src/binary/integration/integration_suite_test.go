@@ -62,7 +62,8 @@ var _ = SynchronizedAfterSuite(func() {
 }, func() {
 	// Run once
 	Expect(cutlass.RemovePackagedBuildpack(packagedBuildpack)).To(Succeed())
-	Expect(cutlass.DeleteBuildpack("binary")).To(Succeed()) // Delete buildpack, so next set of tests against a different stack can run
+	// TODO: Uncomment this once buildpack tests iterate over multiple stacks
+	//Expect(cutlass.DeleteBuildpack("binary")).To(Succeed()) // Delete buildpack, so next set of tests against a different stack can run
 	Expect(cutlass.DeleteOrphanedRoutes()).To(Succeed())
 })
 
