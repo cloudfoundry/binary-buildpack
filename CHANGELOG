@@ -1,3 +1,8 @@
+v1.0.20 Jun 08, 2018
+=====================
+
+* Do not associate this buildpack with stacks
+
 v1.0.19 Jun 05, 2018
 =====================
 
