@@ -1,4 +1,4 @@
-What version of Cloud Foundry and CF CLI are you using? (i.e. What is the output of running `cf curl /v2/info && cf version`?
+What version of Cloud Foundry and CF CLI are you using? (i.e. What is the output of running `cf curl /v2/info && cf version`)?
 
 
 What version of the buildpack you are using?
