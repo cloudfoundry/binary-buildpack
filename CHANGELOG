@@ -1,3 +1,10 @@
+v1.0.21 Jun 13, 2018
+=====================
+
+* Do not associate this buildpack with stacks in offline bosh release
+  (https://www.pivotaltracker.com/story/show/158242610)
+
+
 v1.0.20 Jun 08, 2018
 =====================
 
