@@ -29,7 +29,7 @@ func init() {
 var _ = SynchronizedBeforeSuite(func() []byte {
 	// Run once
 	if buildpackVersion == "" {
-		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack(os.Getenv("CF_STACK"))
+		packagedBuildpack, err := cutlass.PackageUniquelyVersionedBuildpack(os.Getenv("CF_STACK"), ApiHasStackAssociation())
 		Expect(err).NotTo(HaveOccurred())
 
 		data, err := json.Marshal(packagedBuildpack)
@@ -85,7 +85,7 @@ func SkipIfNotWindows() {
 }
 
 func SkipIfNotLinux() {
-	if !canRunForOneOfStacks("cflinuxfs2") {
+	if !canRunForOneOfStacks("cflinuxfs2", "cflinuxfs3") {
 		Skip("Skipping Linux tests")
 	}
 }
@@ -97,4 +97,10 @@ func canRunForOneOfStacks(stacks ...string) bool {
 		}
 	}
 	return false
+}
+
+func ApiHasStackAssociation() bool {
+	supported, err := cutlass.ApiGreaterThan("2.113.0")
+	Expect(err).NotTo(HaveOccurred())
+	return supported
 }
