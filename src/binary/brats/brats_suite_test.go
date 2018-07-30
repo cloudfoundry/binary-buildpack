@@ -54,6 +54,12 @@ func CopyBrats(_version string) *cutlass.App {
 	return cutlass.New(dir)
 }
 
+func CopyBratsWindows(_version string) *cutlass.App {
+	dir, err := cutlass.CopyFixture(filepath.Join(bratshelper.Data.BpDir, "fixtures", "windows_app"))
+	Expect(err).ToNot(HaveOccurred())
+	return cutlass.New(dir)
+}
+
 func PushApp(app *cutlass.App) {
 	Expect(app.Push()).To(Succeed())
 	Eventually(app.InstanceStates, 20*time.Second).Should(Equal([]string{"RUNNING"}))
@@ -63,4 +69,13 @@ func ApiHasStackAssociation() bool {
 	supported, err := cutlass.ApiGreaterThan("2.113.0")
 	Expect(err).NotTo(HaveOccurred())
 	return supported
+}
+
+func CanRunForOneOfStacks(stacks ...string) bool {
+	for _, stack := range stacks {
+		if os.Getenv("CF_STACK") == stack {
+			return true
+		}
+	}
+	return false
 }
