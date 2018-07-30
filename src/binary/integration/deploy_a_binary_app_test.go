@@ -3,10 +3,11 @@ package integration_test
 import (
 	"path/filepath"
 
+	"os"
+
 	"github.com/cloudfoundry/libbuildpack/cutlass"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"os"
 )
 
 var _ = Describe("CF Binary Buildpack", func() {
@@ -21,6 +22,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 
 	Describe("deploying a Ruby script", func() {
 		BeforeEach(func() {
+			SkipIfNotLinux()
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "webrick_app"))
 			app.Stack = os.Getenv("CF_STACK")
 		})
