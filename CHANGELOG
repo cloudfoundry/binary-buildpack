@@ -1,3 +1,9 @@
+v1.0.22 Aug 01, 2018
+=====================
+
+* Build with stack association.
+  for cflinuxfs2, cflinuxfs3, windows2012R2, and windows2016.
+
 v1.0.21 Jun 13, 2018
 =====================
 
