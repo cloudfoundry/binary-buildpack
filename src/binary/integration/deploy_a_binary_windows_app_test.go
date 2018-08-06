@@ -28,7 +28,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 
 		Context("when specifying a buildpack", func() {
 			BeforeEach(func() {
-				app.Buildpacks = []string{cutlass.BuildpackNameForTest("binary", app.Stack)}
+				app.Buildpacks = []string{"binary_buildpack"}
 			})
 
 			It("deploys successfully", func() {
@@ -51,7 +51,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 
 		Context("without a command or Procfile", func() {
 			BeforeEach(func() {
-				app.Buildpacks = []string{cutlass.BuildpackNameForTest("binary", app.Stack)}
+				app.Buildpacks = []string{"binary_buildpack"}
 				app.Memory = "512M"
 				app.StartCommand = "null"
 			})
