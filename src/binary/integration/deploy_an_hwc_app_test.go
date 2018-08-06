@@ -24,7 +24,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 	Describe("deploying a Windows HWC app", func() {
 		BeforeEach(func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "hwc_app"))
-			app.Buildpacks = []string{"binary_buildpack"}
+			app.Buildpacks = []string{cutlass.BuildpackNameForTest("binary", app.Stack)}
 			app.Memory = "512M"
 			app.Stack = os.Getenv("CF_STACK")
 		})

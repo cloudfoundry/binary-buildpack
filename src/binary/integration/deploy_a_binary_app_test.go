@@ -29,7 +29,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 
 		Context("when specifying a buildpack", func() {
 			BeforeEach(func() {
-				app.Buildpacks = []string{"binary_buildpack"}
+				app.Buildpacks = []string{cutlass.BuildpackNameForTest("binary", app.Stack)}
 			})
 
 			It("deploys successfully", func() {

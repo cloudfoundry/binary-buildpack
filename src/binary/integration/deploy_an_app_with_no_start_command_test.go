@@ -22,7 +22,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 	Describe("deploying an app with no start command", func() {
 		BeforeEach(func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "no_start_command"))
-			app.Buildpacks = []string{"binary_buildpack"}
+			app.Buildpacks = []string{cutlass.BuildpackNameForTest("binary", app.Stack)}
 			app.Stack = os.Getenv("CF_STACK")
 			app.StartCommand = "null"
 			app.Memory = "512M"

@@ -91,8 +91,12 @@ func SkipIfNotLinux() {
 }
 
 func canRunForOneOfStacks(stacks ...string) bool {
+	target_stack := os.Getenv("CF_STACK")
 	for _, stack := range stacks {
-		if os.Getenv("CF_STACK") == stack {
+		if target_stack == stack {
+			return true
+		}
+		if stack == "cflinuxfs2" && target_stack == "" { // any-stack buildpacks run against cflinuxfs2
 			return true
 		}
 	}
