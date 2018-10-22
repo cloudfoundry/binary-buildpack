@@ -24,6 +24,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 		BeforeEach(func() {
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "windows_app"))
 			app.Stack = os.Getenv("CF_STACK")
+			app.Memory = "512M"
 		})
 
 		Context("when specifying a buildpack", func() {
