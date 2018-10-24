@@ -20,6 +20,10 @@ var _ = Describe("running supply buildpacks before the binary buildpack", func()
 
 	Context("the app is pushed once", func() {
 		BeforeEach(func() {
+			if version, err := cutlass.ApiVersion(); err != nil || version == "2.65.0" {
+				Skip("API version does not have multi-buildpack support")
+			}
+
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "fake_supply_binary_app"))
 			app.Buildpacks = []string{
 				"https://buildpacks.cloudfoundry.org/fixtures/new_supply_dotnet.zip",
