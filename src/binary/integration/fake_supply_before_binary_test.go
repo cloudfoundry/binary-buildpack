@@ -26,7 +26,7 @@ var _ = Describe("running supply buildpacks before the binary buildpack", func()
 
 			app = cutlass.New(filepath.Join(bpDir, "fixtures", "fake_supply_binary_app"))
 			app.Buildpacks = []string{
-				"https://buildpacks.cloudfoundry.org/fixtures/new_supply_dotnet.zip",
+				"https://github.com/cloudfoundry/dotnet-core-buildpack#develop",
 				"binary_buildpack",
 			}
 			app.Disk = "1G"
@@ -35,8 +35,8 @@ var _ = Describe("running supply buildpacks before the binary buildpack", func()
 		It("finds the supplied dependency in the runtime container", func() {
 			PushAppAndConfirm(app)
 
-			Expect(app.Stdout.String()).To(ContainSubstring("SUPPLYING DOTNET"))
-			Expect(app.GetBody("/")).To(ContainSubstring("dotnet: 1.0.1"))
+			Expect(app.Stdout.String()).To(ContainSubstring("Supplying Dotnet Core"))
+			Expect(app.GetBody("/")).To(MatchRegexp(`dotnet: \d+\.\d+\.\d+`))
 		})
 	})
 })
