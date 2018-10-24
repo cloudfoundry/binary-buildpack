@@ -1,7 +1,10 @@
 package integration_test
 
 import (
+	"fmt"
+	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/cloudfoundry/libbuildpack/cutlass"
 
@@ -20,6 +23,10 @@ var _ = Describe("running supply buildpacks before the binary buildpack", func()
 
 	Context("the app is pushed once", func() {
 		BeforeEach(func() {
+			if !strings.HasPrefix(os.Getenv("CF_STACK"), "cflinuxfs") {
+				Skip(fmt.Sprintf("Skipping because the current stack %s is not supported", os.Getenv("CF_STACK")))
+			}
+
 			if version, err := cutlass.ApiVersion(); err != nil || version == "2.65.0" {
 				Skip("API version does not have multi-buildpack support")
 			}
