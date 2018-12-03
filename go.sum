@@ -5,6 +5,8 @@ github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdn
 github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
 github.com/cloudfoundry/libbuildpack v0.0.0-20181130221911-df2259c35386 h1:sLM67PMaiifowDTbZIwA1HguE/JqAloOjtiqlt0Rd2Y=
 github.com/cloudfoundry/libbuildpack v0.0.0-20181130221911-df2259c35386/go.mod h1:japFdv9g1jWFQEcb/V8fljrTzZY5GmpH3GS3kGg61FM=
+github.com/cloudfoundry/libbuildpack v0.0.0-20181203192608-40fcf6231d2e h1:n5B4kVCmuOwi7Q98xvHqEDYwpKBBB96lmlN/zaS7+bc=
+github.com/cloudfoundry/libbuildpack v0.0.0-20181203192608-40fcf6231d2e/go.mod h1:japFdv9g1jWFQEcb/V8fljrTzZY5GmpH3GS3kGg61FM=
 github.com/elazarl/goproxy v0.0.0-20181111060418-2ce16c963a8a h1:A4wNiqeKqU56ZhtnzJCTyPZ1+cyu8jKtIchQ3TtxHgw=
 github.com/elazarl/goproxy v0.0.0-20181111060418-2ce16c963a8a/go.mod h1:/Zj4wYkgs4iZTTu3o/KG3Itv/qCCa8VVMlb3i9OVuzc=
 github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV9I=
