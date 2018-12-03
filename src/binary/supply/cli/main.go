@@ -1,9 +1,10 @@
 package main
 
 import (
-	"binary/supply"
 	"os"
 	"time"
+
+	"github.com/cloudfoundry/binary-buildpack/src/binary/supply"
 
 	"github.com/cloudfoundry/libbuildpack"
 )

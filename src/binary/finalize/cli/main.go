@@ -1,9 +1,10 @@
 package main
 
 import (
-	"binary/finalize"
 	"os"
 	"time"
+
+	"github.com/cloudfoundry/binary-buildpack/src/binary/finalize"
 
 	"github.com/cloudfoundry/libbuildpack"
 )
