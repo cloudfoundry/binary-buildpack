@@ -34,11 +34,11 @@ var _ = Describe("CF Binary Buildpack", func() {
 				app.StartCommand = "null"
 			})
 
-			It("logs a warning message", func() {
+			FIt("logs a warning message", func() {
 				Expect(app.Push()).ToNot(Succeed())
 				Expect(app.ConfirmBuildpack(buildpackVersion)).To(Succeed())
 
-				Eventually(app.Stdout.String).Should(ContainSubstring("Warning: We detected a Web.config in your app. This probably means that you want to use the hwc-buildpack. If you really want to use the binary-buildpack, you must specify a start command."))
+				Eventually(app.Stdout.String).Should(ContainSubstring("Warning: We detected a Web.config in your app. This probably means that you want to use the HWC Buildpack. If you really want to use the Binary Buildpack, you must specify a start command."))
 			})
 		})
 	})
