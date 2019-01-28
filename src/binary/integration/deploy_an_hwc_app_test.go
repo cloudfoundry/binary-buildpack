@@ -34,7 +34,7 @@ var _ = Describe("CF Binary Buildpack", func() {
 				app.StartCommand = "null"
 			})
 
-			FIt("logs a warning message", func() {
+			It("logs a warning message", func() {
 				Expect(app.Push()).ToNot(Succeed())
 				Expect(app.ConfirmBuildpack(buildpackVersion)).To(Succeed())
 
