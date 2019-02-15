@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Running Fake Supply Buildpack"
+# source: ./bin/supply -- ./my_buildpack_assets/main
+SCRIPT_DIR=$(dirname $0)
+BIN_SOURCE_PATH=$SCRIPT_DIR/../my_buildpack_assets/main
+BUILDPACK_DEST_BIN_DIR=$3/$4/bin
+
+# Create buildpack destination bin directory
+mkdir $BUILDPACK_DEST_BIN_DIR
+
+# Copy main to bin directory which libbuildpack will append to the PATH
+cp $BIN_SOURCE_PATH $BUILDPACK_DEST_BIN_DIR/main

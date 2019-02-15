@@ -1,0 +1,13 @@
+---
+language: fake_supply
+default_versions:
+dependency_deprecation_dates:
+dependencies: []
+include_files:
+  - VERSION
+  - manifest.yml
+  - bin/supply.bat
+  - bin/supply
+  - my_buildpack_assets/main.exe 
+  - my_buildpack_assets/main
+pre_package: scripts/build.sh
