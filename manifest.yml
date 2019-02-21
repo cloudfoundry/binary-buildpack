@@ -18,7 +18,9 @@ include_files:
 - bin/detect
 - bin/detect.bat
 - bin/finalize
+- bin/finalize.exe
 - bin/release
 - bin/release.bat
 - bin/supply
+- bin/supply.exe
 - manifest.yml
