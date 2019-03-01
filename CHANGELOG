@@ -1,3 +1,14 @@
+v1.0.31 Mar 01, 2019
+=====================
+
+* Add windows support for extension buildpacks
+
+* Update go version to 1.11.5 when compiling buildpack from source
+  (https://www.pivotaltracker.com/story/show/163701450)
+
+* Update warning message with clear buildpack names
+  (https://www.pivotaltracker.com/story/show/162625493)
+
 v1.0.30 Jan 22, 2019
 =====================
 
