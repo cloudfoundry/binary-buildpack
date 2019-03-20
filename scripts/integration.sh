@@ -10,4 +10,4 @@ GINKGO_ATTEMPTS=${GINKGO_ATTEMPTS:-2}
 export CF_STACK=${CF_STACK:-cflinuxfs3}
 
 cd src/binary/integration
-ginkgo -r --flakeAttempts=$GINKGO_ATTEMPTS -nodes $GINKGO_NODES --slowSpecThreshold=60
+ginkgo -r -mod vendor --flakeAttempts=$GINKGO_ATTEMPTS -nodes $GINKGO_NODES --slowSpecThreshold=60
