@@ -2,5 +2,6 @@
 /binary_buildpack*.zip
 /log/
 /pkg/
+!vendor/**
 .idea/
 .vscode/
