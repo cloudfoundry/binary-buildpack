@@ -8,7 +8,7 @@ import (
 
 var _ = Describe("Binary buildpack", func() {
 	var copyBrats (func(string) *cutlass.App)
-	if CanRunForOneOfStacks("cflinuxfs2", "cflinuxfs3") {
+	if CanRunForOneOfStacks("cflinuxfs3") {
 		copyBrats = CopyBrats
 		bratshelper.UnbuiltBuildpack("", copyBrats)
 		bratshelper.DeployAppWithExecutableProfileScript("", copyBrats)

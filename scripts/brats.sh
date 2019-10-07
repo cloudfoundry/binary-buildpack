@@ -8,7 +8,7 @@ source .envrc
 
 GINKGO_NODES=${GINKGO_NODES:-3}
 GINKGO_ATTEMPTS=${GINKGO_ATTEMPTS:-1}
-export CF_STACK=${CF_STACK:-cflinuxfs2}
+export CF_STACK=${CF_STACK:-cflinuxfs3}
 
 cd src/binary/brats
 ginkgo -r -mod vendor --flakeAttempts=$GINKGO_ATTEMPTS -nodes $GINKGO_NODES --slowSpecThreshold=60
