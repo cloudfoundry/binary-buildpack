@@ -1,3 +1,37 @@
+v1.0.35 Oct 09, 2019
+=====================
+
+* Update libbuildpack
+
+* Update libbuildpack
+
+* Remove cflinuxfs2 Fixes: #32
+  (https://www.pivotaltracker.com/story/show/166710428)
+
+* Update libbuildpack
+
+commit 3d9cfb20f0be4177d8557976ac74ff20bc2a4720
+Merge: a341094 ec3922b
+Author: Zander Mackie <amackie@pivotal.io>
+Date:   Wed Oct 2 14:21:39 2019 -0400
+
+    Merge pull request #34 from cloudfoundry/revert-33-remove-windows2016-stack-2.8
+    
+    Revert "Remove references to windows2016 stack"
+
+
+commit ec3922bc0e52064bb328ee6eb3e7d0ca71ed336e
+Author: Zander Mackie <zmackie@gmail.com>
+Date:   Wed Oct 2 14:21:28 2019 -0400
+
+    Revert "Remove references to windows2016 stack"
+
+
+* Update libbuildpack
+
+* Update libbuildpack
+
+
 v1.0.34 Sep 23, 2019
 =====================
 
