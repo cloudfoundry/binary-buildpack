@@ -21,7 +21,7 @@ var packagedBuildpack cutlass.VersionedBuildpackPackage
 func init() {
 	flag.StringVar(&buildpackVersion, "version", "", "version to use (builds if empty)")
 	flag.BoolVar(&cutlass.Cached, "cached", true, "cached buildpack")
-	flag.StringVar(&cutlass.DefaultMemory, "memory", "64M", "default memory for pushed apps")
+	flag.StringVar(&cutlass.DefaultMemory, "memory", "128M", "default memory for pushed apps")
 	flag.StringVar(&cutlass.DefaultDisk, "disk", "64M", "default disk for pushed apps")
 	flag.Parse()
 }
