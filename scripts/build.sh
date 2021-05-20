@@ -24,6 +24,20 @@ function main() {
         -o "${ROOTDIR}/bin/${name}" \
           "${path}"
   done
+
+  if [[ -f "${ROOTDIR}/.windows" ]]; then
+    for path in "${binaries[@]}"; do
+      local name
+      name="$(basename "$(dirname "${path}")")"
+
+      GOOS=windows \
+        go build \
+          -mod vendor \
+          -ldflags="-s -w" \
+          -o "${ROOTDIR}/bin/${name}.exe" \
+            "${path}"
+    done
+  fi
 }
 
 main "${@:-}"
