@@ -1,14 +1,30 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
-cd "$( dirname "${BASH_SOURCE[0]}" )/.."
-source .envrc
-./scripts/install_tools.sh
+set -e
+set -u
+set -o pipefail
+
+ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+readonly ROOTDIR
+
+source "${ROOTDIR}/.envrc"
+
+function main() {
+  local src
+  src="$(find "${ROOTDIR}/src" -mindepth 1 -maxdepth 1 -type d )"
+
+  "${ROOTDIR}/scripts/install_tools.sh"
 
 
-GINKGO_NODES=${GINKGO_NODES:-3}
-GINKGO_ATTEMPTS=${GINKGO_ATTEMPTS:-1}
-export CF_STACK=${CF_STACK:-cflinuxfs3}
+  echo "Run Buildpack Runtime Acceptance Tests"
 
-cd src/binary/brats
-ginkgo -r -mod vendor --flakeAttempts=$GINKGO_ATTEMPTS -nodes $GINKGO_NODES --slowSpecThreshold=60
+  CF_STACK="${CF_STACK:-cflinuxfs3}" \
+    ginkgo \
+      -r \
+      -mod vendor \
+      --flakeAttempts "${GINKGO_ATTEMPTS:-2}" \
+      -nodes "${GINKGO_NODES:-3}" \
+        "${src}/brats"
+}
+
+main "${@:-}"
