@@ -17,6 +17,7 @@ import (
 var bpDir string
 var buildpackVersion string
 var packagedBuildpack cutlass.VersionedBuildpackPackage
+var token string
 
 var _ = func() bool {
 	testing.Init()
@@ -28,6 +29,7 @@ func init() {
 	flag.BoolVar(&cutlass.Cached, "cached", true, "cached buildpack")
 	flag.StringVar(&cutlass.DefaultMemory, "memory", "128M", "default memory for pushed apps")
 	flag.StringVar(&cutlass.DefaultDisk, "disk", "64M", "default disk for pushed apps")
+	flag.StringVar(&token, "github-token", "", "use the token to make GitHub API requests")
 	flag.Parse()
 }
 
