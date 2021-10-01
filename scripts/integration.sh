@@ -92,6 +92,7 @@ function specs::ginkgo::run(){
   buildpack_file="${4}"
   stack="${5}"
 
+  PATH="${ROOTDIR}/.bin":${PATH} \
   CF_STACK="${stack}" \
   BUILDPACK_FILE="${BUILDPACK_FILE:-"${buildpack_file}"}" \
     ginkgo \
