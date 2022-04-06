@@ -58,28 +58,28 @@ jobs:
           repo: ${{ github.repository }}
           number: ${{ github.event.number }}
 
-            - name: Check for Human Commits
-              id: human-commits
-              uses: paketo-buildpacks/github-config/actions/pull-request/check-human-commits@main
-              with:
-                token: ${{ secrets.CF_BOT_TOKEN }}
-                repo: ${{ github.repository }}
-                number: ${{ github.event.number }}
-                bots: 'dependabot[bot],web-flow,cf-buildpacks-eng'
+      - name: Check for Human Commits
+        id: human-commits
+        uses: paketo-buildpacks/github-config/actions/pull-request/check-human-commits@main
+        with:
+          token: ${{ secrets.CF_BOT_TOKEN }}
+          repo: ${{ github.repository }}
+          number: ${{ github.event.number }}
+          bots: 'dependabot[bot],web-flow,cf-buildpacks-eng'
 
-            - name: Checkout
-              if: steps.human-commits.outputs.human_commits == 'false' && steps.unverified-commits.outputs.unverified_commits == 'false'
-              uses: actions/checkout@v2
+      - name: Checkout
+        if: steps.human-commits.outputs.human_commits == 'false' && steps.unverified-commits.outputs.unverified_commits == 'false'
+        uses: actions/checkout@v2
 
-            - name: Dispatch
-              if: steps.human-commits.outputs.human_commits == 'false' && steps.unverified-commits.outputs.unverified_commits == 'false'
-              uses: paketo-buildpacks/github-config/actions/dispatch@main
-              with:
-                repos: ${{ github.repository }}
-                token: ${{ secrets.CF_BOT_TOKEN }}
-                event: approve-bot-pr
-                payload: |
-                  {
-                    "number": "${{ github.event.pull_request.number }}",
-                    "login": "${{ github.event.pull_request.user.login }}"
-                  }
+      - name: Dispatch
+        if: steps.human-commits.outputs.human_commits == 'false' && steps.unverified-commits.outputs.unverified_commits == 'false'
+        uses: paketo-buildpacks/github-config/actions/dispatch@main
+        with:
+          repos: ${{ github.repository }}
+          token: ${{ secrets.CF_BOT_TOKEN }}
+          event: approve-bot-pr
+          payload: |
+            {
+              "number": "${{ github.event.pull_request.number }}",
+              "login": "${{ github.event.pull_request.user.login }}"
+            }
