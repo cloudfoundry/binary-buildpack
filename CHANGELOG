@@ -1,3 +1,9 @@
+v1.0.44 May 06, 2022
+=====================
+
+* Fix workflows error - Remove Integration step, these tests doesn't run on Github Actions
+
+
 v1.0.43 Apr 06, 2022
 =====================
 
