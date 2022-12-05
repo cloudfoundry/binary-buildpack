@@ -1,3 +1,11 @@
+v1.1.0 Dec 05, 2022
+=====================
+
+* Add support for cflinuxfs4 stack
+
+* Bumps go.mod go version to 1.19
+
+
 v1.0.47 Oct 13, 2022
 =====================
 
