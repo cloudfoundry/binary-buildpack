@@ -1,7 +1,7 @@
 module github.com/cloudfoundry/binary-buildpack
 
 require (
-	github.com/cloudfoundry/libbuildpack v0.0.0-20221115221325-f9d1b0cc562f
+	github.com/cloudfoundry/libbuildpack v0.0.0-20221216180909-3fd083482e26
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.25.0
 )
