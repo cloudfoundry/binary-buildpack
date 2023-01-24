@@ -1,3 +1,11 @@
+v1.1.1 Jan 24, 2023
+====================
+
+* Update libbuildpack
+
+* Bump github.com/onsi/gomega from 1.24.1 to 1.25.0
+
+
 v1.1.0 Dec 05, 2022
 =====================
 
