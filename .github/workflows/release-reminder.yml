@@ -20,6 +20,7 @@ jobs:
         with:
           token: ${{ secrets.CF_BOT_GITHUB_TOKEN }}
           ref: develop
+          fetch-depth: 0
 
       - name: Get Latest Version
         id: latest-version
@@ -39,11 +40,6 @@ jobs:
             * See [diff from latest version]("https://github.com/${{ github.repository }}/compare/${{ steps.latest-version.outputs.val }}..develop") and validate if a release is required.
             * Make sure the latest commit on `develop` has passed tests on the [CI](https://buildpacks.ci.cf-app.com/teams/main/pipelines/${{ github.event.repository.name }})
             * Refer [release instructions](https://github.com/pivotal-cf/tanzu-buildpacks/wiki/Releasing-CF-Buildpacks). (private link)
-
-            **Commit Message**
-            ```
-            git ci -m "Bump version to $(cat VERSION)"
-            ```
 
       - name: Add issue to project
         id: issue-to-proj
