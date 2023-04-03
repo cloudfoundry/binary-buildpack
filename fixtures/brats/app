@@ -1,18 +1,25 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 
-require 'webrick'
+tmppipe=$(mktemp -u)
+mkfifo "${tmppipe}"
+trap 'rm "${tmppipe}"' EXIT
 
-server = WEBrick::HTTPServer.new :Port => ENV['PORT']
+# On / : Hello, world!
+# On other paths: 404
+function handler {
+  while read -r line; do
+    if [ -z "$(echo "$line" | tr -d '\r\n')" ]; then
+      break
+    fi
 
-server.mount_proc '/' do |request, response|
-  if request.path == '/'
-    response.body = 'Hello World!'
-  else
-    response.status = 404
-    response.body = 'Not Found'
-  end
-end
+    if [[ "${line:0:10}" = "GET / HTTP" ]]; then
+      echo -e "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\nHello, world!" > "${tmppipe}"
+      return
+    fi
+  done
+  echo -e "HTTP/1.1 404 NotFound\r\n\r\n\r\nNot Found" > "${tmppipe}"
+}
 
-trap 'INT' do server.shutdown end
-
-server.start
+while true; do
+  tail -f "${tmppipe}" | nc -lvN "${PORT:-8080}" | handler;
+done

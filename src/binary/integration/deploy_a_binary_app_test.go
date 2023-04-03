@@ -20,10 +20,10 @@ var _ = Describe("CF Binary Buildpack", func() {
 		app = nil
 	})
 
-	Describe("deploying a Ruby script", func() {
+	Describe("deploying a binary app", func() {
 		BeforeEach(func() {
 			SkipIfNotLinux()
-			app = cutlass.New(filepath.Join(bpDir, "fixtures", "webrick_app"))
+			app = cutlass.New(filepath.Join(bpDir, "fixtures", "default_app"))
 			app.Stack = os.Getenv("CF_STACK")
 		})
 
