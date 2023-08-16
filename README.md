@@ -76,7 +76,3 @@ Join the #buildpacks channel in our [Slack community](http://slack.cloudfoundry.
 ### Reporting Issues
 
 Open a GitHub issue on this project [here](https://github.com/cloudfoundry/binary-buildpack/issues/new)
-
-### Active Development
-
-The project backlog is on [Pivotal Tracker](https://www.pivotaltracker.com/projects/1042066)
