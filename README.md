@@ -75,4 +75,4 @@ Join the #buildpacks channel in our [Slack community](http://slack.cloudfoundry.
 
 ### Reporting Issues
 
-Open a GitHub issue on this project [here](https://github.com/cloudfoundry/binary-buildpack/issues/new)
+Open a GitHub issue on this project [here](https://github.com/cloudfoundry/binary-buildpack/issues/new).
