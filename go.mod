@@ -1,7 +1,7 @@
 module github.com/cloudfoundry/binary-buildpack
 
 require (
-	github.com/cloudfoundry/libbuildpack v0.0.0-20231211162543-86d10e150195
+	github.com/cloudfoundry/libbuildpack v0.0.0-20240716203800-e8e9729b7ef9
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.30.0
 )
@@ -28,4 +28,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-go 1.19
+go 1.22.5
