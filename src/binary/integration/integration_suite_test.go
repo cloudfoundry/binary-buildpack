@@ -90,7 +90,7 @@ func PushAppAndConfirm(app *cutlass.App) {
 }
 
 func SkipIfNotWindows() {
-	if os.Getenv("SKIP_WINDOWS_TESTS") != "" || !canRunForOneOfStacks("windows2012R2", "windows2016", "windows") {
+	if os.Getenv("SKIP_WINDOWS_TESTS") != "" || os.Getenv("CF_STACK") != "windows" {
 		Skip("Skipping Windows tests")
 	}
 }
