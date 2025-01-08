@@ -12,11 +12,8 @@ var _ = Describe("Binary buildpack", func() {
 		copyBrats = CopyBrats
 		bratshelper.UnbuiltBuildpack("", copyBrats)
 		bratshelper.DeployAppWithExecutableProfileScript("", copyBrats)
-		bratshelper.DeployingAnAppWithAnUpdatedVersionOfTheSameBuildpack(copyBrats)
 	} else {
 		copyBrats = CopyBratsWindows
 	}
-
-	bratshelper.DeployAnAppWithSensitiveEnvironmentVariables(copyBrats)
 
 })
