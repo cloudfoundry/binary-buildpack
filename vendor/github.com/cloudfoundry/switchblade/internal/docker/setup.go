@@ -19,7 +19,6 @@ import (
 
 const (
 	BuildpackAppLifecycleRepoURL = "https://github.com/cloudfoundry/buildpackapplifecycle/archive/refs/heads/main.zip"
-	InternalNetworkName          = "switchblade-internal"
 	BridgeNetworkName            = "bridge"
 )
 
@@ -118,11 +117,6 @@ func (s Setup) Run(ctx context.Context, logs io.Writer, name, path string) (stri
 		return "", fmt.Errorf("failed to copy image pull logs: %w", err)
 	}
 
-	err = s.networks.Create(ctx, fmt.Sprintf("%s-%s", InternalNetworkName, name), "bridge", true)
-	if err != nil {
-		return "", fmt.Errorf("failed to create network: %w", err)
-	}
-
 	env := []string{fmt.Sprintf("CF_STACK=%s", s.stack)}
 	for key, value := range s.env {
 		env = append(env, fmt.Sprintf("%s=%s", key, value))
@@ -190,7 +184,7 @@ func (s Setup) Run(ctx context.Context, logs io.Writer, name, path string) (stri
 	}
 
 	hostConfig := container.HostConfig{
-		NetworkMode: container.NetworkMode(fmt.Sprintf("%s-%s", InternalNetworkName, name)),
+		NetworkMode: container.NetworkMode(InternalNetworkName),
 	}
 
 	resp, err := s.client.ContainerCreate(ctx, &containerConfig, &hostConfig, nil, nil, name)

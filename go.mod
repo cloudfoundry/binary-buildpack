@@ -2,7 +2,7 @@ module github.com/cloudfoundry/binary-buildpack
 
 require (
 	github.com/cloudfoundry/libbuildpack v0.0.0-20240717165421-f2ae8069fcba
-	github.com/cloudfoundry/switchblade v0.8.0
+	github.com/cloudfoundry/switchblade v0.9.0
 	github.com/onsi/ginkgo v1.16.5
 	github.com/onsi/gomega v1.36.2
 	github.com/sclevine/spec v1.4.0
@@ -39,7 +39,7 @@ require (
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	golang.org/x/tools v0.28.0 // indirect
+	golang.org/x/tools v0.29.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
