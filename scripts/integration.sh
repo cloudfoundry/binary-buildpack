@@ -72,6 +72,11 @@ function main() {
     if [[ "$(jq -r -S .integration.harness "${ROOTDIR}/config.json")" != "switchblade" ]]; then
       util::print::warn "NOTICE: This integration suite does not support Docker."
     fi
+    if [[ "${stack}" =~ ^windows ]]; then
+      util::print::warn "NOTICE: This integration suite does not support Docker on Windows stacks."
+      util::print::info "Windows containers cannot run on Linux Docker hosts. Use CF platform for Windows testing."
+      exit 0
+    fi
   fi
 
   declare -a matrix
