@@ -3,7 +3,7 @@ module github.com/cloudfoundry/binary-buildpack
 go 1.24.12
 
 require (
-	github.com/cloudfoundry/libbuildpack v0.0.0-20260306125332-dcaf55eb6f33
+	github.com/cloudfoundry/libbuildpack v0.0.0-20261012122722-6cd465089938
 	github.com/cloudfoundry/switchblade v0.9.5
 	github.com/onsi/ginkgo/v2 v2.28.1
 	github.com/onsi/gomega v1.39.0
