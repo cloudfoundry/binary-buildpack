@@ -1,3 +1,9 @@
+unreleased
+=====================
+
+* Add Dynatrace OneAgent injection support (via github.com/Dynatrace/libbuildpack-dynatrace). When a Dynatrace service is bound, the OneAgent is downloaded during staging and LD_PRELOADed into the app at launch. Defaults to the generic `process` code module; use the `addtechnologies` binding field to add language modules (e.g. `go`).
+
+
 v2.0.0 Jun 15, 2026
 =====================
 

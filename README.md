@@ -65,6 +65,38 @@ To test this buildpack, run the following command from the buildpack's directory
     ./scripts/integration.sh
     ```
 
+### Dynatrace Integration
+
+This buildpack can automatically inject the [Dynatrace OneAgent](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/cloud-foundry/) into your application. When a Dynatrace service is bound to the app, the buildpack downloads the OneAgent during staging and configures `LD_PRELOAD` (via `profile.d/dynatrace-env.sh`) so the agent is loaded into your binary at launch.
+
+Bind a Dynatrace user-provided service (the service name must contain `dynatrace`):
+
+```bash
+cf create-user-provided-service dynatrace -p '{"environmentid":"<env-id>","apitoken":"<paas-token>"}'
+cf bind-service my_app dynatrace
+cf restage my_app
+```
+
+Supported credential fields:
+
+| Key             | Type    | Description                                                                                             | Required | Default         |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------- | -------- | --------------- |
+| environmentid   | string  | The ID for the Dynatrace environment.                                                                   | Yes      | N/A             |
+| apitoken        | string  | The API Token for the Dynatrace environment.                                                            | Yes      | N/A             |
+| apiurl          | string  | Overrides the default Dynatrace API URL to connect to.                                                  | No       | Default API URL |
+| skiperrors      | boolean | If `true`, staging does not fail when the OneAgent download fails.                                      | No       | false           |
+| networkzone     | string  | If set, the agent is configured to use communication endpoints located in this network zone.           | No       | empty           |
+| enablefips      | boolean | If `true`, FIPS 140-2 mode is enabled.                                                                  | No       | false           |
+| addtechnologies | string  | Comma-separated list of additional OneAgent code modules to download (e.g. `go`, `java`, `nodejs`).     | No       | empty           |
+
+By default the buildpack downloads the generic `process` code module. Since the
+binary buildpack runs an opaque binary, it cannot detect the application's
+language. For language-specific code-level insights, set `addtechnologies`
+accordingly — e.g. `"addtechnologies":"go"` for a Go binary. Note that OneAgent
+injection relies on `LD_PRELOAD`, so the binary must be **dynamically linked**
+(for Go, built with `CGO_ENABLED=1`); a fully statically-linked binary ignores
+`LD_PRELOAD` and will not be instrumented.
+
 ### Contributing
 
 Find our guidelines [here](./CONTRIBUTING.md).
