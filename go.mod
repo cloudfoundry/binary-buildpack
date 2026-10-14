@@ -4,6 +4,7 @@ go 1.24.12
 
 require (
 	github.com/cloudfoundry/libbuildpack v0.0.0-20261012122722-6cd465089938
+	github.com/Dynatrace/libbuildpack-dynatrace v1.9.0
 	github.com/cloudfoundry/switchblade v0.9.5
 	github.com/onsi/ginkgo/v2 v2.28.1
 	github.com/onsi/gomega v1.39.0

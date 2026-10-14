@@ -2,6 +2,9 @@ package integration_test
 
 import (
 	"flag"
+	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"testing"
@@ -55,6 +58,9 @@ func TestIntegration(t *testing.T) {
 	fakeSupply, err := packager.Package(filepath.Join(fixtures, "util", "fake_supply"), packager.CacheDir, "0.0.0", settings.Stack, true)
 	Expect(err).NotTo(HaveOccurred())
 
+	goBuildpackFile, err := downloadBuildpack("go")
+	Expect(err).NotTo(HaveOccurred())
+
 	err = platform.Initialize(
 		switchblade.Buildpack{
 			Name: "binary_buildpack",
@@ -64,16 +70,51 @@ func TestIntegration(t *testing.T) {
 			Name: "fake_supply",
 			URI:  fakeSupply,
 		},
+		switchblade.Buildpack{
+			Name: "go_buildpack",
+			URI:  goBuildpackFile,
+		},
 	)
+	Expect(err).NotTo(HaveOccurred())
+
+	dynatraceName, err := switchblade.RandomName()
+	Expect(err).NotTo(HaveOccurred())
+
+	dynatraceDeployment, _, err := platform.Deploy.
+		WithBuildpacks("go_buildpack").
+		WithEnv(map[string]string{"BP_DEBUG": "true"}).
+		Execute(dynatraceName, filepath.Join(fixtures, "util", "dynatrace"))
 	Expect(err).NotTo(HaveOccurred())
 
 	suite := spec.New("integration", spec.Report(report.Terminal{}), spec.Parallel())
 	suite("Default", testDefault(platform, fixtures))
+	suite("Dynatrace", testDynatrace(platform, fixtures, dynatraceDeployment.InternalURL))
 	suite("Fake Supply", testFakeSupply(platform, fixtures))
 
 	suite.Run(t)
 
+	Expect(platform.Delete.Execute(dynatraceName)).To(Succeed())
 	Expect(os.Remove(os.Getenv("BUILDPACK_FILE"))).To(Succeed())
 	Expect(os.Remove(fakeSupply)).To(Succeed())
+	Expect(os.Remove(goBuildpackFile)).To(Succeed())
 	Expect(platform.Deinitialize()).To(Succeed())
+}
+
+func downloadBuildpack(name string) (string, error) {
+	uri := fmt.Sprintf("https://github.com/cloudfoundry/%s-buildpack/archive/master.zip", name)
+
+	file, err := os.CreateTemp("", fmt.Sprintf("%s-buildpack-*.zip", name))
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	resp, err := http.Get(uri)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	_, err = io.Copy(file, resp.Body)
+	return file.Name(), err
 }

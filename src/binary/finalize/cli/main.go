@@ -4,6 +4,8 @@ import (
 	"os"
 	"time"
 
+	_ "github.com/cloudfoundry/binary-buildpack/src/binary/hooks"
+
 	"github.com/cloudfoundry/binary-buildpack/src/binary/finalize"
 
 	"github.com/cloudfoundry/libbuildpack"
